@@ -6,7 +6,7 @@
 /*   By: npiyapan <npiyapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:55:09 by npiyapan          #+#    #+#             */
-/*   Updated: 2024/03/07 15:27:51 by npiyapan         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:35:59 by npiyapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ int	ft_printf(const char *str, ...)
 	len = 0;
 	i = 0;
 	va_start(args, str);
-	while (str[len])
+	while (str[i])
 	{
 		if (str[len] == '%')
-			len += ft_check(&args, str + i + 1);
+		{
+			i++;
+			len += ft_check(&args, str + i);
+		}
 		else
 			len += write (1, &str[len], 1);
-		printf("len = %d", len);
+		i++;
 	}
 	va_end(args);
 	return (len);
@@ -55,6 +58,6 @@ int	main(void)
 {
 	char	m;
 
-	m = '0';
+	m = '2';
 	ft_printf("test = %c", m);
 }
